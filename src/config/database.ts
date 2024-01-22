@@ -1,7 +1,7 @@
-import { Sequelize } from "sequelize";
+import { DataSource } from "typeorm";
 
 class Database {
-    public sequelize: Sequelize | undefined
+    public dataSource: DataSource | undefined
 
     private POSTGRES_DB = process.env.POSTGRES_DB as string
     private POSTGRES_HOST = process.env.POSTGRES_HOST as string
@@ -11,12 +11,9 @@ class Database {
 
     constructor() {
         this.connectToPostgreSQL()
-
-
-        this.sequelize?.
-            authenticate().
+        this.dataSource?.initialize().
             then(() => {
-                console.log('✅ PostgreSQL Connection has been established successfully')
+                console.log('✅  PostgreSQL Connection has been established successfully')
             })
             .catch((error: string) => {
                 console.log('❌ Unable to connect to the PostgreSQL database', error)
@@ -24,9 +21,14 @@ class Database {
     }
 
     private async connectToPostgreSQL() {
-        this.sequelize = new Sequelize({
-            database: this.POSTGRES_DB, username: this.POSTGRES_USER,
-            password: this.POSTGRES_PASSWORD, host: this.POSTGRES_HOST, port: this.POSTGRES_PORT, dialect: "postgres"
+        this.dataSource = new DataSource({
+            type: this.POSTGRES_DB as 'postgres',
+            host: this.POSTGRES_HOST,
+            username: this.POSTGRES_USER,
+            password: this.POSTGRES_PASSWORD,
+            port: this.POSTGRES_PORT,
+            logging: true,
+            synchronize: true
         })
     }
 
