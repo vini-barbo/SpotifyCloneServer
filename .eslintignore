@@ -1,0 +1,9 @@
+{
+	"ignorePatterns": [
+		"temp.js",
+		"node_modules/*",
+		"dist/*",
+		"**/vendor/*.js"
+	],
+	"rules": {}
+}

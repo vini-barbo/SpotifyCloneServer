@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { User } from '../entities/UserEntity'
 
 class Database {
     public dataSource: DataSource | undefined
@@ -27,8 +28,8 @@ class Database {
             username: this.POSTGRES_USER,
             password: this.POSTGRES_PASSWORD,
             port: this.POSTGRES_PORT,
-            logging: true,
-            synchronize: true
+            synchronize: true,
+            entities: [User]
         })
     }
 
