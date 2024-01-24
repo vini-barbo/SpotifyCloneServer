@@ -1,9 +1,18 @@
 import App from './app'
 
-const port: number = Number(process.env.SERVER_PORT)
+class Server {
+    private SERVER_PORT: number = Number(process.env.SERVER_PORT)
+    private app = new App().app
 
-const app = new App().app
+    constructor() {
+        this.start()
+    }
 
-app.listen(port, () => {
-    console.log('✅  Server Connection has been create successfully at port', port)
-})
+    private async start() {
+        this.app.listen(this.SERVER_PORT, () => {
+            console.log('✅  Server Connection has been create successfully at port', this.SERVER_PORT)
+        })
+    }
+}
+
+const server = new Server()
