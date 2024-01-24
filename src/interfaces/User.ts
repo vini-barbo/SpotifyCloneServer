@@ -11,8 +11,6 @@ interface IUser {
     status: number;
 }
 
-
-
 interface IUserRepository {
     create(): void;
     findOneByObejct(): IUser;
