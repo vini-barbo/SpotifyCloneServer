@@ -1,6 +1,7 @@
 
 import { DataSource } from "typeorm";
 import { UserEntity as User } from '../entities/UserEntity'
+import moment, { Moment } from "moment";
 
 class Database {
     public dataSource: DataSource | undefined
@@ -27,15 +28,14 @@ class Database {
         this.connectToPostgreSQL()
         this.dataSource?.initialize().
             then(() => {
-                console.log('✅  PostgreSQL Connection has been established successfully')
+                console.log(`✅ [${moment().format()}] PostgreSQL Connection has been established successfully `)
             })
             .catch((error: string) => {
-                console.log('❌ Unable to connect to the PostgreSQL database', error)
+                console.log(`❌ [${moment().format()}] Unable to connect to the PostgreSQL database`, error)
             })
     }
 
 }
-
 
 const dataBase = new Database();
 
