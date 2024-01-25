@@ -12,7 +12,7 @@ interface IUser {
 }
 
 interface IUserRepository {
-    create(): void;
+    create(User: IUser): void;
     findOneByObejct(): IUser;
     findMany(): IUser[];
 }

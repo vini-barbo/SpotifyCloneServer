@@ -1,5 +1,6 @@
+
 import { DataSource } from "typeorm";
-import { User } from '../entities/UserEntity'
+import { UserEntity as User } from '../entities/UserEntity'
 
 class Database {
     public dataSource: DataSource | undefined
@@ -9,17 +10,6 @@ class Database {
     private POSTGRES_PORT = Number(process.env.POSTGRES_PORT) as number
     private POSTGRES_USER = process.env.POSTGRES_USER as string
     private POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD as string
-
-    constructor() {
-        this.connectToPostgreSQL()
-        this.dataSource?.initialize().
-            then(() => {
-                console.log('✅  PostgreSQL Connection has been established successfully')
-            })
-            .catch((error: string) => {
-                console.log('❌ Unable to connect to the PostgreSQL database', error)
-            })
-    }
 
     private async connectToPostgreSQL() {
         this.dataSource = new DataSource({
@@ -33,6 +23,20 @@ class Database {
         })
     }
 
+    public start() {
+        this.connectToPostgreSQL()
+        this.dataSource?.initialize().
+            then(() => {
+                console.log('✅  PostgreSQL Connection has been established successfully')
+            })
+            .catch((error: string) => {
+                console.log('❌ Unable to connect to the PostgreSQL database', error)
+            })
+    }
+
 }
 
-export default Database
+
+const dataBase = new Database();
+
+export { dataBase }

@@ -3,7 +3,7 @@ import { IUser } from '../interfaces/User'
 
 
 @Entity()
-export class User implements IUser {
+export class UserEntity implements IUser {
     @PrimaryGeneratedColumn()
     id!: number
 

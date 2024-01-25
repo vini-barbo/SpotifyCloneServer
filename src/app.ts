@@ -1,6 +1,7 @@
 
 import express, { Application, Request, Response } from "express";
-import Database from "./config/Database";
+import { dataBase } from "./config/Database";
+import { UserEntity } from "./entities/UserEntity";
 
 class App {
     public app: Application;
@@ -9,10 +10,12 @@ class App {
         this.app = express();
         this.routes()
         this.databaseSync()
+
     }
 
     protected databaseSync(): void {
-        const db = new Database();
+        dataBase.start()
+        console.log(dataBase.dataSource)
     }
 
     protected routes(): void {
