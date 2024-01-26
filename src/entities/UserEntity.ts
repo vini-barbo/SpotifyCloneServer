@@ -1,9 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { IUser } from '../interfaces/User'
-
-
-@Entity()
-export class UserEntity implements IUser {
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
+@Entity('user')
+export class UserEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!: number
 
@@ -28,4 +25,12 @@ export class UserEntity implements IUser {
     @Column()
     status!: number
 
+    @CreateDateColumn()
+    created_at = Date
+
+    @UpdateDateColumn()
+    update_at = Date
+
+    @DeleteDateColumn()
+    deleted_at = Date
 }

@@ -1,4 +1,5 @@
 import { UUID } from "crypto"
+import { Request, Response } from 'express';
 
 interface IUser {
     id: number;
@@ -17,5 +18,22 @@ interface IUserRepository {
     findMany(): IUser[];
 }
 
+interface IUserController {
+    create(req: Request, res: Response): Promise<Response>;
+}
 
-export { IUser, IUserRepository }
+interface IUserCreate {
+    firstName: string;
+    lastName: string;
+    birthdate: Date;
+    userName: string;
+    email: string;
+    password: UUID | string;
+}
+
+interface IUserServices {
+    create(userDataCreate: IUserCreate): Promise<IUser>;
+}
+
+
+export { IUser, IUserRepository, IUserController, IUserServices, IUserCreate }
