@@ -13,13 +13,15 @@ interface IUser {
 }
 
 interface IUserRepository {
-    create(User: IUser): void;
-    findOneByObejct(): IUser;
-    findMany(): IUser[];
+    create(User: IUserCreate): IUser;
 }
 
 interface IUserController {
     create(req: Request, res: Response): Promise<Response>;
+}
+
+interface IUserService {
+    create(userDataCreate: IUserCreate): IUser;
 }
 
 interface IUserCreate {
@@ -31,9 +33,6 @@ interface IUserCreate {
     password: UUID | string;
 }
 
-interface IUserServices {
-    create(userDataCreate: IUserCreate): Promise<IUser>;
-}
 
 
-export { IUser, IUserRepository, IUserController, IUserServices, IUserCreate }
+export { IUser, IUserRepository, IUserController, IUserService, IUserCreate }
