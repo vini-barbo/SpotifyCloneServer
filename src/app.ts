@@ -1,7 +1,8 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application } from "express";
+import { appRoutes } from "./routes";
+
 import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
-
 
 class App {
     public app: Application;
@@ -12,10 +13,8 @@ class App {
     }
 
 
-    protected routes(): void {
-        this.app.route('/').get((req: Request, res: Response) => {
-            res.send("welcome home")
-        })
+    private routes(): void {
+        this.app.use(appRoutes)
     }
 }
 

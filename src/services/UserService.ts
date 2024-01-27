@@ -4,7 +4,7 @@ class UserService implements IUserService {
 
     constructor(private readonly UserRepository: IUserRepository) { }
 
-    create(userCreateData: IUserCreate): IUser {
+    public create(userCreateData: IUserCreate): IUser {
 
         console.log(this.UserRepository)
 
