@@ -6,10 +6,13 @@ class UserController implements IUserController {
     constructor(private readonly UserService: IUserService) { }
 
     public async create(request: Request, response: Response): Promise<Response> {
-        const { userName, birthdate, email, firstName, lastName, password } = request.body;
-        const dataUserCreate: IUserCreate = { userName, birthdate, email, firstName, lastName, password };
-        const result = await this.UserService.create(dataUserCreate);
-        return response.status(201).json(result);
+        // const { userName, birthdate, email, firstName, lastName, password } = request.body;
+        // const dataUserCreate: IUserCreate = { userName, birthdate, email, firstName, lastName, password };
+        // const result = await this.UserService.create(dataUserCreate);
+
+        console.log(request.body)
+
+        return response.status(201).send('its ok ');
     }
 }
 

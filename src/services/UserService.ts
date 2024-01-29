@@ -12,3 +12,5 @@ class UserService implements IUserService {
         return teste as IUser
     }
 }
+
+export { UserService }
