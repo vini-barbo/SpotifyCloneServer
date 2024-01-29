@@ -14,10 +14,13 @@ class UserRoutes {
 
     constructor() {
         this.routes.get('/findAll', (req: Request, res: Response) => {
+            console.log(req.body)
             res.send('A pica do vovo não sobe mais')
         })
 
-        this.routes.post('/create', userController.create.bind(userController))
+        this.routes.post('/create', (req: Request, res: Response) => {
+            res.send('A pica do vovo não sobe mais')
+        })
     }
 }
 

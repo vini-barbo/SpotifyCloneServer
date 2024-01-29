@@ -10,8 +10,12 @@ class UserController implements IUserController {
         // const dataUserCreate: IUserCreate = { userName, birthdate, email, firstName, lastName, password };
         // const result = await this.UserService.create(dataUserCreate);
 
-        console.log(request.body)
+        // console.log('params ', request.params)
+        // console.log('body ', request.body)
+        // console.log('headers ', request.headers)
+        // console.log('query ', request.query)
 
+        console.log(request)
         return response.status(201).send('its ok ');
     }
 }

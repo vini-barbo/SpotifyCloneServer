@@ -6,9 +6,14 @@ class Server {
     private app = new App().app
 
     public async start() {
-        this.app.listen(this.SERVER_PORT, () => {
-            console.log(`✅ [${moment().format()}] Server Connection has been create successfully at port ${this.SERVER_PORT}`)
-        })
+        try {
+            this.app.listen(this.SERVER_PORT, () => {
+                console.log(`✅ [${moment().format()}] Server Connection has been create successfully at port ${this.SERVER_PORT}`)
+            })
+        } catch (error) {
+            console.log(`❌ [${moment().format()}] Failed to connect the database at port ${this.SERVER_PORT}`, error)
+        }
+
     }
 }
 

@@ -1,20 +1,36 @@
 import express, { Application } from "express";
 import { appRoutes } from "./routes";
-
 import { PrismaClient } from '@prisma/client'
-const prisma = new PrismaClient()
+import moment from 'moment'
+import bodyParser from "body-parser";
 
 class App {
     public app: Application;
+    private DB_PORT = process.env.POSTGRES_PORT
 
     constructor() {
         this.app = express();
-        this.routes()
+        this.expressConfig()
+        this.routesConfig()
+        this.prismaConfig()
     }
 
+    private expressConfig(): void {
+        this.app.use(express.json());
+    }
 
-    private routes(): void {
+    private routesConfig(): void {
         this.app.use(appRoutes)
+    }
+
+    private prismaConfig(): void {
+        try {
+            const prisma = new PrismaClient()
+            console.log(`✅ [${moment().format()}] Database Connection has been create successfully at port ${this.DB_PORT}`)
+        } catch (error) {
+            console.log(`❌ [${moment().format()}] Failed to connect the database at port ${this.DB_PORT}`, error)
+        }
+
     }
 }
 
