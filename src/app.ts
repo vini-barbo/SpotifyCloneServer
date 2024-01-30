@@ -2,7 +2,6 @@ import express, { Application } from "express";
 import { appRoutes } from "./routes";
 import { PrismaClient } from '@prisma/client'
 import moment from 'moment'
-import bodyParser from "body-parser";
 
 class App {
     public app: Application;

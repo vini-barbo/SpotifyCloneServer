@@ -18,9 +18,7 @@ class UserRoutes {
             res.send('A pica do vovo não sobe mais')
         })
 
-        this.routes.post('/create', (req: Request, res: Response) => {
-            res.send('A pica do vovo não sobe mais')
-        })
+        this.routes.post('/create', userController.create.bind(userController))
     }
 }
 
