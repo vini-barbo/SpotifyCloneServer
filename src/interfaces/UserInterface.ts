@@ -1,5 +1,6 @@
 import { UUID } from "crypto"
 import { Request, Response } from 'express';
+import { ValidationReturn } from "../types/types"
 
 interface IUser {
     id: number;
@@ -21,7 +22,7 @@ interface IUserController {
 }
 
 interface IUserService {
-    create(userDataCreate: IUserCreate): IUser;
+    create(userDataCreate: IUserCreate): Promise<IUser>;
 }
 
 interface IUserCreate {
@@ -33,6 +34,8 @@ interface IUserCreate {
     password: UUID | string;
 }
 
+interface IUserValidator {
+    create(userToBeValidated: IUserCreate): ValidationReturn;
+}
 
-
-export { IUser, IUserRepository, IUserController, IUserService, IUserCreate }
+export { IUser, IUserRepository, IUserController, IUserService, IUserCreate, IUserValidator }
