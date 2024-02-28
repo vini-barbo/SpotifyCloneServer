@@ -1,0 +1,5 @@
+interface ITimeModule {
+
+}
+
+export { ITimeModule }

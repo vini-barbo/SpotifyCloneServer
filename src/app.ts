@@ -1,17 +1,15 @@
 import express, { Application } from "express";
 import { appRoutes } from "./routes";
-import { PrismaClient } from '@prisma/client'
-import moment from 'moment'
+import { DataBaseConfig } from "./DB/main/DBConfig";
 
 class App {
     public app: Application;
-    private DB_PORT = process.env.POSTGRES_PORT
 
     constructor() {
         this.app = express();
-        this.expressConfig()
-        this.routesConfig()
-        this.prismaConfig()
+        this.expressConfig();
+        this.routesConfig();
+        DataBaseConfig.connect()
     }
 
     private expressConfig(): void {
@@ -20,16 +18,6 @@ class App {
 
     private routesConfig(): void {
         this.app.use(appRoutes)
-    }
-
-    private prismaConfig(): void {
-        try {
-            const prisma = new PrismaClient()
-            console.log(`✅ [${moment().format()}] Database Connection has been create successfully at port ${this.DB_PORT}`)
-        } catch (error) {
-            console.log(`❌ [${moment().format()}] Failed to connect the database at port ${this.DB_PORT}`, error)
-        }
-
     }
 }
 
