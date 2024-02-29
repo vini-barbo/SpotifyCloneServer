@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import { IDataBaseConfig } from '../../interfaces/modules/DataBaseConfigInterface';
+import { IDBInstance } from '../../interfaces/modules/DataBaseConfigInterface';
 import { TimeModule } from '../../modules/TimeModule';
 
-class DataBaseConfig implements IDataBaseConfig {
+class DBInstance implements IDBInstance {
     static DB_PORT: string = process.env.POSTGRES_PORT as string;
     static prisma: PrismaClient;
 
@@ -16,4 +16,4 @@ class DataBaseConfig implements IDataBaseConfig {
     }
 }
 
-export { DataBaseConfig };
+export { DBInstance };

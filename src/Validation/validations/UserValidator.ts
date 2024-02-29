@@ -1,7 +1,6 @@
 import { z, ZodRawShape } from "zod";
-import { IUserCreate, IUserValidator, IUserService, IUser } from "../../interfaces/UserInterface";
+import { IUserCreate, IUserService, IUser } from "../../interfaces/UserInterface";
 import { Validator } from "../Validator";
-import { ValidationReturn } from '../../types/types';
 
 
 class UserValidator extends Validator implements IUserService {

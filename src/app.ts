@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import { appRoutes } from "./routes";
-import { DataBaseConfig } from "./DB/main/DBConfig";
+import { DBInstance } from "./DB/main/DBInstance";
 
 class App {
     public app: Application;
@@ -9,7 +9,7 @@ class App {
         this.app = express();
         this.expressConfig();
         this.routesConfig();
-        DataBaseConfig.connect()
+        DBInstance.connect()
     }
 
     private expressConfig(): void {

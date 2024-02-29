@@ -1,5 +1,5 @@
-interface IDataBaseConfig {
+interface IDBInstance {
 
 }
 
-export { IDataBaseConfig }
+export { IDBInstance }
