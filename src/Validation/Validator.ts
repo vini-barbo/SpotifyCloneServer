@@ -11,7 +11,7 @@ class Validator {
 
         const result = schema.safeParse(dataValidation)
         if (result.success) {
-            return result
+            return result.data
         }
         else {
             console.log(this.validationErrorHandler.handleMissingRequiredFields(result as any))

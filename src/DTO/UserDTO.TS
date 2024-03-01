@@ -3,7 +3,7 @@ interface UserCreateDTO {
     first_name: string,
     last_name: string,
     email: string,
-    birthdate: string,
+    birthdate: Date,
     password: string,
 }
 
@@ -13,11 +13,11 @@ interface UserDatabaseDTO {
     first_name: string,
     last_name: string,
     email: string,
-    birthdate: string,
+    birthdate: Date,
     password: string,
-    created_at: string,
-    updated_at: string,
-    deleted_at: string,
+    created_at: Date,
+    updated_at: Date,
+    deleted_at: Date | null,
 }
 
 interface UserSearchQueryDTO {
@@ -26,12 +26,17 @@ interface UserSearchQueryDTO {
     first_name?: string,
     last_name?: string,
     email?: string,
-    birthdate?: string,
+    birthdate?: Date,
     password?: string,
-    created_at?: string,
-    updated_at?: string,
-    deleted_at?: string,
+    created_at?: Date,
+    updated_at?: Date,
+    deleted_at?: Date | null,
 }
 
+type RequireAtLeastOne<T> = {
+    [K in keyof T]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<keyof T, K>>>
+}[keyof T]
 
-export { UserCreateDTO, UserDatabaseDTO, UserSearchQueryDTO }
+
+
+export { UserCreateDTO, UserDatabaseDTO, UserSearchQueryDTO, RequireAtLeastOne }

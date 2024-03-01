@@ -1,13 +1,16 @@
 import { IUserRepository, IUserCreate, IUser } from '../interfaces/UserInterface'
-import { Prisma } from '@prisma/client'
+import { UserQuery } from '../DB/main/DBQuerys/UserQuerys'
 
 class UserPostgrePrismaRepo implements IUserRepository {
 
     constructor() { }
 
-    public create(userValidatedData: IUserCreate) {
+    public async create(userValidatedData: IUserCreate) {
 
-        return {} as IUser
+
+        const result = await UserQuery.create(userValidatedData)
+
+        return result
     }
 }
 
